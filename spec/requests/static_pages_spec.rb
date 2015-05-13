@@ -25,6 +25,13 @@ RSpec.describe "StaticPages", type: :request do
       expect(page).to have_content('About')
     end
   end
+  describe "Contact page" do
+    it "should have the content 'Contact'" do
+      visit '/static_pages/contact'
+      expect(page).to have_content('Contact')
+    end
+  end
+
   describe "title" do
     it "should have the title 'Home'" do
       visit '/static_pages/home'
@@ -37,6 +44,10 @@ RSpec.describe "StaticPages", type: :request do
     it "should have the title 'About'" do
       visit '/static_pages/about'
       expect(page).to have_title('About')
+    end
+    it "should have the title 'Contact'" do
+      visit '/static_pages/contact'
+      expect(page).to have_title('Contact')
     end
   end
 end
