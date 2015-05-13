@@ -25,4 +25,18 @@ RSpec.describe "StaticPages", type: :request do
       expect(page).to have_content('About')
     end
   end
+  describe "title" do
+    it "should have the title 'Home'" do
+      visit '/static_pages/home'
+      expect(page).to have_title('Home')
+    end
+    it "should have the title 'Help'" do
+      visit '/static_pages/help'
+      expect(page).to have_title('Help')
+    end
+    it "should have the title 'About'" do
+      visit '/static_pages/about'
+      expect(page).to have_title('About')
+    end
+  end
 end
