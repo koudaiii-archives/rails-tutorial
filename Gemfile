@@ -50,7 +50,13 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+
+  gem 'spring-commands-rspec'
+
+  gem 'guard-rspec'
+
 end
+
 
 group :test do
    gem 'selenium-webdriver'
