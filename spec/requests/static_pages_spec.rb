@@ -35,7 +35,7 @@ RSpec.describe "StaticPages", type: :request do
   describe "title" do
     it "should have the title 'Home'" do
       visit '/static_pages/home'
-      expect(page).to have_title('Home')
+      expect(page).not_to have_title('Home')
     end
     it "should have the title 'Help'" do
       visit '/static_pages/help'
