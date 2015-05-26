@@ -22,7 +22,7 @@ RSpec.describe "UserPages", type: :request do
 
     describe "with invalid information" do
       it "should not create a user" do
-        expect { click_button submit }.not_to change(User, :count)
+        expect { click_button "Create my account" }.not_to change(User, :count)
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe "UserPages", type: :request do
         fill_in "Confirmation", with: "foobar"
       end
       it "should create a user" do
-        expect { click_button submit }.to change(User, :count).by(1)
+        expect { click_button "Create my account" }.to change(User, :count).by(1)
       end
     end
   end
