@@ -12,9 +12,15 @@ RSpec.describe "AuthenticationPages", type: :request do
     end
 
     describe "invalid signin" do
+      before { click_button "Sign in" }
 
       it { should have_title('Sign in') }
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+
+      describe "after visiting another page" do
+        before { click_link "Home" }
+        it { should_not have_selector('div.alert.alert-error') }
+      end
     end
 
     describe "valid signin" do
