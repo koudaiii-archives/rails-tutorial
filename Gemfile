@@ -51,10 +51,12 @@ group :development, :test do
 
   gem 'rspec-rails'
 
+  # Use its(:test){ }
+  gem 'rspec-its'
+
   gem 'spring-commands-rspec'
 
   gem 'guard-rspec'
-
 end
 
 
