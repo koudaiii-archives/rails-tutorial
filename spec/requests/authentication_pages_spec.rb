@@ -4,6 +4,7 @@ RSpec.describe "AuthenticationPages", type: :request do
   describe "Authentication" do
     subject { page }
     before { visit signin_path }
+
     describe "signin" do
 
       describe "signin page" do
@@ -34,6 +35,22 @@ RSpec.describe "AuthenticationPages", type: :request do
           before { click_link "Sign out" }
           it { should have_link('Sign in') }
         end
+      end
+    end
+
+    describe "authorization" do
+      let(:user){ FactoryGirl.create(:user) }
+
+      describe "in the Users controller" do
+        describe "visiting the edit page" do
+          before { visit edit_user_path(user) }
+          it { should have_title('Sign in') }
+        end
+        describe "submitting to the update action" do
+          before { patch user_path(user) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
       end
     end
   end
