@@ -67,6 +67,7 @@ RSpec.describe "AuthenticationPages", type: :request do
         end
       end
       describe "for non-signed-in users" do
+
         describe "when attempting to visit a protected page" do
           before do
             visit edit_user_path(user)
@@ -78,6 +79,11 @@ RSpec.describe "AuthenticationPages", type: :request do
           it "after signing in" do
             expect(page).to have_title('Edit user')
           end
+        end
+
+        describe "visiting the user index" do
+          before { visit users_path }
+          it { should have_title('Sign in') }
         end
       end
     end
