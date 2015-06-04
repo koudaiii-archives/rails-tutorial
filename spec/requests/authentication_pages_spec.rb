@@ -76,7 +76,7 @@ RSpec.describe "AuthenticationPages", type: :request do
           end
 
           it "after signing in" do
-            expect(page).to have_tittle('Edit user')
+            expect(page).to have_title('Edit user')
           end
         end
       end
