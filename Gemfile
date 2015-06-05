@@ -28,6 +28,12 @@ gem 'bcrypt', '~> 3.1.7'
 # Use dummy data for user pagenate
 gem 'faker'
 
+# Use pagination
+gem 'will_paginate'
+
+# Use bootstrap view pagination
+gem 'bootstrap-will_paginate', '0.0.10'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
