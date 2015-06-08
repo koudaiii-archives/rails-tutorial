@@ -97,6 +97,17 @@ RSpec.describe "AuthenticationPages", type: :request do
         it { should have_link('Sign out', href: signout_path) }
         it { should_not have_link('Sign in', href: signin_path) }
       end
+      describe "as an non-admin user" do
+        let(:user){ FactoryGirl.create(:user) }
+        let(:non_admin) { FactoryGirl.create(:user) }
+
+        before { sign_in non_admin, no_capybara: true }
+
+        describe "submitting a DELETE request to the User#destoroy action" do
+          before { delete user_path(user) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
+      end
     end
   end
 end
