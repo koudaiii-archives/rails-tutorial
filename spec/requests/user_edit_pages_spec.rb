@@ -3,10 +3,7 @@ require 'rails_helper'
 RSpec.describe "UserEditPages", type: :request do
   describe "User edit pages" do
     subject { page }
-    before do
-      visit signin_path
-      valid_signin(user)
-    end
+    before { sign_in user }
     let(:user){ FactoryGirl.create(:user) }
 
     describe "edit" do

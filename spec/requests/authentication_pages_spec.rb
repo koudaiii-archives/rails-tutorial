@@ -67,13 +67,16 @@ RSpec.describe "AuthenticationPages", type: :request do
         end
       end
       describe "for non-signed-in users" do
+        it { should_not have_link('Users',    href: users_path) }
+        it { should_not have_link('Profile',  href: user_path(user)) }
+        it { should_not have_link('Settings', href: edit_user_path(user)) }
+        it { should_not have_link('Sign out', href: signout_path) }
+        it { should have_link('Sign in', href: signin_path) }
 
         describe "when attempting to visit a protected page" do
           before do
             visit edit_user_path(user)
-            fill_in "Email", with: user.email
-            fill_in "Password", with: user.password
-            click_button "Sign in"
+            sign_in user
           end
 
           describe "after signing in" do
@@ -84,10 +87,7 @@ RSpec.describe "AuthenticationPages", type: :request do
             describe "when signing in again" do
               before do
                 delete signout_path
-                visit signin_path
-                fill_in "Email", with: user.email
-                fill_in "Password", with: user.password
-                click_button "Sign in"
+                sign_in user
               end
 
               it "should render the default(profile) page" do
@@ -121,6 +121,31 @@ RSpec.describe "AuthenticationPages", type: :request do
 
         describe "submitting a DELETE request to the User#destoroy action" do
           before { delete user_path(user) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
+      end
+
+      describe "should be not able to delete own user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before { sign_in admin, no_capybara: true }
+        it "not to change user" do
+          expect { delete user_path(admin) }.not_to change(User, :count)
+        end
+      end
+
+      describe "redirect to root path" do
+        let(:user){ FactoryGirl.create(:user) }
+        before { sign_in user, no_capybara: true }
+
+        describe "access new_user_path" do
+          before { get new_user_path }
+          specify { expect(response).to redirect_to(root_path) }
+        end
+        describe "access new_user_path" do
+          let(:params) do
+            { user: { name: user.name, email: user.email, password: user.password, password_confirmation: user.password } }
+          end
+          before { post users_path(user), params }
           specify { expect(response).to redirect_to(root_path) }
         end
       end
