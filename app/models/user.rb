@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
 
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
   has_secure_password
 
   def User.new_remember_token
