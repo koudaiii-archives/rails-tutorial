@@ -24,6 +24,7 @@ class MicropostsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Micropost created!' }
         format.json { render :show, status: :created, location: @micropost }
       else
+        @feed_items = []
         format.html { render 'static_pages/home', notice: 'Sorry! not create!' }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
