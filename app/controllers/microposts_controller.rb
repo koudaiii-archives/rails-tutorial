@@ -18,7 +18,6 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.content = wrap(@micropost.content)
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to root_path, notice: 'Micropost created!' }
