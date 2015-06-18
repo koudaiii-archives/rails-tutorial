@@ -92,7 +92,7 @@ RSpec.describe "UserPages", type: :request do
 
         describe "toggling the button" do
           before { click_button "Follow" }
-          it { should have_xpath("//input[@value='unfollow']") }
+          it { should have_xpath("//input[@value='Unfollow']") }
         end
       end
 
