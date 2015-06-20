@@ -66,6 +66,8 @@ group :development, :test do
   gem 'spring-commands-rspec'
 
   gem 'guard-rspec'
+
+  gem 'rdefs'
 end
 
 
