@@ -5,6 +5,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+        <div class="account"><%= @user.account_name unless @user.account_name.nil? %></div>
       </h1>
     </section>
     <section>
