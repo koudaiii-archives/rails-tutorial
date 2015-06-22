@@ -1,4 +1,6 @@
 class MicropostsController < ApplicationController
+
+  REPLY_TO_REGEX = /@[a-z](\w*[a-z0-9])*\z/i
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
@@ -18,6 +20,7 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    @micropost.in_reply_to_id = extract_in_reply_to(@micropost.content)
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to root_path, notice: 'Micropost created!' }
@@ -50,5 +53,9 @@ class MicropostsController < ApplicationController
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
+    end
+
+    def extract_in_reply_to(content)
+      User.find_by(account_name: REPLY_TO_REGEX.match(content).to_s )
     end
 end

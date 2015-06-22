@@ -46,6 +46,7 @@ subject { page }
         let(:other_user) { FactoryGirl.create(:user) }
         before do
           @userToReplyTo = FactoryGirl.create(:micropost, user: other_user, content: "@#{user.account_name} OK,Thank you")
+          visit root_path
         end
         it { should have_content(@userToReplyTo.content) }
       end

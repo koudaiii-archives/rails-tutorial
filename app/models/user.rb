@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   has_many :microposts, dependent: :destroy
-  has_many :replies, foreign_key: "in_reply_to", class_name: "Micropost"
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
 
