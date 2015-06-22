@@ -41,6 +41,14 @@ subject { page }
         it { should have_link("1 followers", href: followers_user_path(user)) }
 
       end
+
+      describe "reply to user" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          @userToReplyTo = FactoryGirl.create(:micropost, user: other_user, content: "@#{user.account_name} OK,Thank you")
+        end
+        it { should have_content(@userToReplyTo.content) }
+      end
     end
   end
 
