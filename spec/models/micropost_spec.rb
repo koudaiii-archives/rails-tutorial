@@ -30,5 +30,13 @@ RSpec.describe Micropost, type: :model do
       before { @micropost.content = "a" * 141 }
       it { should_not be_valid }
     end
+
+    describe "reply to other user" do
+      let(:other_user) { FactoryGirl.create(:user) }
+      before do
+        @micropost = user.microposts.build(content: "@#{other_user.account_name} Lorem ipsum")
+      end
+      it { should be_valid }
+    end
   end
 end
