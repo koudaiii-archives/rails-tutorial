@@ -21,6 +21,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.in_reply_to_id = extract_in_reply_to(@micropost.content)
+    logger.info  "Create micropost: content is #{@micropost.content}. user is #{@current_user.name}. reply to #{@micropost.in_reply_to_id}."
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to root_path, notice: 'Micropost created!' }
