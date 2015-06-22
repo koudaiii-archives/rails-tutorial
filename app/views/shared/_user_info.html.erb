@@ -3,6 +3,7 @@
 </a>
 <h1>
   <%= current_user.name %>
+  <div class="account"><%= current_user.account_name unless current_user.account_name.nil? %></div>
 </h1>
 <span>
   <%= link_to "view my profile", current_user %>
