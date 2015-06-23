@@ -45,10 +45,13 @@ subject { page }
       describe "reply to user" do
         let(:other_user) { FactoryGirl.create(:user) }
         before do
-          @userToReplyTo = FactoryGirl.create(:micropost, user: other_user, content: "@#{user.account_name} OK,Thank you")
+          @other_post = other_user.microposts.create!(:content => "@#{user.account_name} Hello!", :in_reply_to_id => "#{user.id}")
+          sign_in user
           visit root_path
         end
-        it { should have_content(@userToReplyTo.content) }
+        it "feed in reply to user" do
+         expect(user.feed.find_by(content: @other_post.content)).to eq(@other_post)
+        end
       end
     end
   end
