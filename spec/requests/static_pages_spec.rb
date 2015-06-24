@@ -41,6 +41,18 @@ subject { page }
         it { should have_link("1 followers", href: followers_user_path(user)) }
 
       end
+
+      describe "reply to user" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          @other_post = other_user.microposts.create!(:content => "@#{user.account_name} Hello!", :in_reply_to_id => "#{user.id}")
+          sign_in user
+          visit root_path
+        end
+        it "feed in reply to user" do
+         expect(user.feed.find_by(content: @other_post.content)).to eq(@other_post)
+        end
+      end
     end
   end
 
