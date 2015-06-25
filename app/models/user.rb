@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
 
+  has_many :messages, foreign_key: "sender_id", dependent: :destroy
+  
+  
   has_many :microposts, dependent: :destroy
   has_many :reply_to, through: :microposts, source: :in_reply_to
   has_many :followed_users, through: :relationships, source: :followed
