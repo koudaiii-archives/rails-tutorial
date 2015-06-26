@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   has_many :messages, foreign_key: "sender_id", dependent: :destroy
-  
+  has_many :reverse_messages, foreign_key: "recipient_id", class_name: "Message", dependent: :destroy
   
   has_many :microposts, dependent: :destroy
   has_many :reply_to, through: :microposts, source: :in_reply_to
