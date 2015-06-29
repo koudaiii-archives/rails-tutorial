@@ -1,7 +1,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :recipient_id %>
+<%= f.label :recipient_id, "To:" %>
 <%= f.text_field :recipient_id %>
 
-<%= f.label :content %>
+<%= f.label :content, "Message:" %>
 <%= f.text_field :content %>
