@@ -1,14 +1,35 @@
 <li>
-<% unless message.nil? %>
-<%= message.inspect %>
 <table>
   <tbody>
+    <tr>
+      <td>
+        <span class="sender">
+          sender to: <%= message.sender.name %>
+          <%= link_to gravatar_for(message.sender), message.sender %>
+        </span>
+      </td>
+      <td>
+        <span class="recipient">
+          recipient to : <%= message.recipient.name %>
+          <%= link_to gravatar_for(message.recipient), message.recipient %>
+        </span>
+      </td>
+      <td>
+        <span class="content">
+          Message : <%= message.content %>
+          </span>
+      </td>
+    </tr>
     <tr>
       <td><%= link_to 'Show', message %></td>
       <td><%= link_to 'Edit', edit_message_path(message) %></td>
       <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <span class="timestamp">
+          Last Message <%= time_ago_in_words(message.created_at)%> ago.
+        </span>
+      </td>
     </tr>
   </tbody>
 </table>
-<% end %>
 </li>
