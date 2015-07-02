@@ -17,10 +17,6 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new
   end
 
-  # GET /messages/1/edit
-  def edit
-  end
-
   # POST /messages
   # POST /messages.json
   def create

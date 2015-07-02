@@ -1,11 +1,27 @@
 <% provide(:title, 'Direct Message') %>
 <h1>Direct Messages</h1>
 
-<%= will_paginate %>
-<ul class="messages">
-  <%= render @messages %>
-</ul>
-<%= will_paginate %>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <td>
+        Sender
+      </td>
+      <td>
+        Recipient
+      </td>
+      <td>
+        Message
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+    </tr>
+    <%= render partial: 'message', collection: @messages %>
+    <%= will_paginate @messages %>
+  </tbody>
+</table>
 
 <br>
 
