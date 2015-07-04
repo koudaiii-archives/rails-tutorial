@@ -26,7 +26,11 @@
   <td>
     <span class="content"><%= wrap(message.content) %></span>
   </td>
-  <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td>
+    <% if current_user.id == message.sender_id %>
+    <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </td>
   <td>
     <span class="timestamp">
       Last Message <%= time_ago_in_words(message.created_at)%> ago.

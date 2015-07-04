@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
+  before_action :correct_user, only: :destroy
 
   # GET /messages
   # GET /messages.json
@@ -66,5 +68,11 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:content, :recipient_id)
+    end
+
+    # Delete Only my Message
+    def correct_user
+      @message = current_user.messages.find_by(id: params[:id])
+      redirect_to root_url if @message.nil?
     end
 end
