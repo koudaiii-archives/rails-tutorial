@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('#micropost_content').on('keyup keydown keypress change',->
+  $('#message_content').on('keyup keydown keypress change', ->
     thisValueLength = $(this).val().length
     limit = 140
     if thisValueLength < limit
