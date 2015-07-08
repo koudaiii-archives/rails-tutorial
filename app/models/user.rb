@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
 
   def follow!(other_user)
     relationships.create!(followed_id: other_user.id)
+    UserMailer.welcome_email(other_user)
   end
 
   def unfollow!(other_user)
