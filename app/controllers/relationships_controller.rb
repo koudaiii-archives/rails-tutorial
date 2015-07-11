@@ -1,6 +1,7 @@
+# follw and unfollow
 class RelationshipsController < ApplicationController
   before_action :signed_in_user
-  after_action :notification_mail
+  after_action :notification_mail, only: [:create]
 
   def create
     @user = User.find(params[:relationship][:followed_id])
