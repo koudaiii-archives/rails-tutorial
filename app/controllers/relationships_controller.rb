@@ -23,6 +23,6 @@ class RelationshipsController < ApplicationController
 
   private
     def notification_mail
-      UserMailer.welcome_email(@user).deliver_later
+      UserMailer.follow_notificaton(current_user, @user).deliver_later
     end
 end
