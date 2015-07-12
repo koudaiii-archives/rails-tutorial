@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-      <h1><%= @current_user.name %>,<%= @user.name %></h1>
-  </body>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1><%= @followed_user.name %>からフォローされました</h1>
+  <div class="mailto">
+    <p>
+      Dear <%= @user.name %> san.
+    </p>
+  </div>
+  <div class="mailbody">
+    <p>
+      <%= @followed_user.name %>からフォローされました。
+    </p>
+  </div>
+</body>
 </html>

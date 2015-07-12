@@ -2,9 +2,9 @@
 class UserMailer < ApplicationMailer
   default from: 'notification@example.com'
 
-  def follow_notificaton(current_user, user)
+  def follow_notificaton(followed_user, user)
     @user = user
-    @current_user = current_user
+    @followed_user = followed_user
     email_with_name = %("#{user.name}" <#{user.email}>)
     @url  = 'http://localhost:3000'
 
