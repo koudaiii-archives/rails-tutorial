@@ -71,6 +71,8 @@ group :development, :test do
   gem 'guard-rspec'
 
   gem 'rdefs'
+
+  gem 'rubocop', require: false
 end
 
 
