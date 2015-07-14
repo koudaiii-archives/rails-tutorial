@@ -1,6 +1,6 @@
 # Micropost
 class MicropostsController < ApplicationController
-  REPLY_TO_REGEX = /@(\w[a-zA-z0-9]*)\s/i
+  REPLY_TO_REGEX = /@(\w[a-zA-Z0-9]*)\s/i
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
