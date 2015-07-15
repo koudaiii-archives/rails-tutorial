@@ -1,5 +1,7 @@
+# follw and unfollow
 class RelationshipsController < ApplicationController
   before_action :signed_in_user
+  after_action :notification_mail, only: [:create]
 
   def create
     @user = User.find(params[:relationship][:followed_id])
@@ -14,8 +16,13 @@ class RelationshipsController < ApplicationController
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow!(@user)
     respond_to do |format|
-      format.html {redirect_to @user }
+      format.html { redirect_to @user }
       format.js
     end
   end
+
+  private
+    def notification_mail
+      UserMailer.follow_notificaton(current_user, @user).deliver_later
+    end
 end

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1><%= link_to @followed_user.name, @followed_user %>からフォローされました</h1>
+  <div class="mailto">
+    <p>
+      Dear <%= link_to @user.name, @user %> san.
+    </p>
+  </div>
+  <div class="mailbody">
+    <p>
+      <%= @followed_user.name %>からフォローされました。
+    </p>
+  </div>
+</body>
+</html>
