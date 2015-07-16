@@ -23,6 +23,8 @@ class RelationshipsController < ApplicationController
 
   private
     def notification_mail
-      UserMailer.follow_notificaton(current_user, @user).deliver_later
+      if @user.receive_notifications_by_email?
+        UserMailer.follow_notificaton(current_user, @user).deliver_later
+      end
     end
 end

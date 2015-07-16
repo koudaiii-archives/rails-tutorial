@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     @url  = 'http://localhost:3000'
 
     mail(to: email_with_name,
-         subject: 'Welcom to My  Awesome Site') do |format|
+         subject: 'followed!!') do |format|
            format.html { render 'followed' }
            format.text { render text: 'followed' }
          end
