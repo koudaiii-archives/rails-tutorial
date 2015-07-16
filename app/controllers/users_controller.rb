@@ -67,7 +67,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :account_name,
                                    :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :receive_notifications_by_email)
     end
 
     #Brefore actions
