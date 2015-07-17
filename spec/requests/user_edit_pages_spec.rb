@@ -35,6 +35,7 @@ RSpec.describe "UserEditPages", type: :request do
           fill_in "Email", with: new_email
           fill_in "Password", with: user.password
           fill_in "Confirm Password", with: user.password
+          page.check('user_receive_notifications_by_email')
           click_button "Save changes"
         end
 
