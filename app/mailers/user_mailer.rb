@@ -2,7 +2,7 @@
 class UserMailer < ApplicationMailer
   default from: 'notification@example.com'
 
-  def follow_notificaton(followed_user, user)
+  def follow_notification(followed_user, user)
     @user = user
     @followed_user = followed_user
     email_with_name = %("#{user.name}" <#{user.email}>)
