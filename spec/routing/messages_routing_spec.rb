@@ -12,11 +12,11 @@ RSpec.describe MessagesController, type: :routing do
     end
 
     it "routes to #show" do
-      expect(:get => "/messages/1").to route_to("messages#show", :id => "1")
+      expect(:get => "/messages/1").not_to route_to("messages#show", :id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/messages/1/edit").to route_to("messages#edit", :id => "1")
+      expect(:get => "/messages/1/edit").not_to route_to("messages#edit", :id => "1")
     end
 
     it "routes to #create" do
@@ -24,7 +24,7 @@ RSpec.describe MessagesController, type: :routing do
     end
 
     it "routes to #update" do
-      expect(:put => "/messages/1").to route_to("messages#update", :id => "1")
+      expect(:put => "/messages/1").not_to route_to("messages#update", :id => "1")
     end
 
     it "routes to #destroy" do

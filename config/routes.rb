@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :messages
+  resources :messages, except: [:edit, :show, :update]
 
   root 'static_pages#home'
   match '/help', to: 'static_pages#help', via: 'get'
