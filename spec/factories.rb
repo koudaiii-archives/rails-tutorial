@@ -9,9 +9,16 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+
+    factory :receive_notifications_by_email do
+      receive_notifications_by_email true
+    end
+
   end
+
   factory :micropost do
     content "Lorem ipsum"
     user
   end
+
 end

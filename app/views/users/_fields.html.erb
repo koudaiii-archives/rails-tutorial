@@ -14,3 +14,13 @@
 
 <%= f.label :password_confirmation, "Confirm Password" %>
 <%= f.password_field :password_confirmation %>
+<table>
+  <tr>
+    <td>
+      <%= f.label :receive_notifications_by_email, "Receive Notifications By Email" %>
+    </td>
+    <td>
+      <%= f.check_box :receive_notifications_by_email %>
+    </td>
+  </tr>
+</table>

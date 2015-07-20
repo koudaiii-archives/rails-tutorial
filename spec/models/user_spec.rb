@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe User do
   before do
-    @user = User.new(name: "Example User", account_name: "exampleuser", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+    @user = User.new(name: "Example User", account_name: "exampleuser",
+                    email: "user@example.com", password: "foobar",
+                    password_confirmation: "foobar", receive_notifications_by_email: false)
   end
 
   subject { @user }
@@ -24,6 +25,7 @@ describe User do
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
   it { should respond_to(:reverse_relationships) }
+  it { should respond_to(:receive_notifications_by_email) }
   it { should respond_to(:followers) }
   it { should be_valid }
   it { should_not be_admin }
@@ -48,6 +50,15 @@ describe User do
       subject { other_user }
       its(:followers){ should include(@user) }
     end
+  end
+
+  describe "with Notifications attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:receive_notifications_by_email)
+    end
+
+    it { should be_receive_notifications_by_email }
   end
 
   describe "with admin attribute set to 'true'" do
