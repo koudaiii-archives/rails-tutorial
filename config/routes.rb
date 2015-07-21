@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
   resources :messages, except: [:edit, :show, :update]
 
   root 'static_pages#home'
