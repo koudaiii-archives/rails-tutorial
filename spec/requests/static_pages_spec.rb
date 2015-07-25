@@ -15,6 +15,7 @@ subject { page }
     it_should_behave_like "all static pages"
     it { should_not have_title('| Home') }
 
+    it { should have_link("forgotten password?", href: new_password_reset_path)}
     describe "for signed-in users" do
       let(:user){ FactoryGirl.create(:user) }
       before do
