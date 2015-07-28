@@ -7,8 +7,9 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    flash.notice = "Ok! send to your Email!"
-    redirect_to root_path
+    user = User.find_by_email(params[:email].downcase)
+    user.send_password_reset if user
+    redirect_to root_path, notice: "Email sent with password reset instructions."
   end
 
   private
@@ -17,6 +18,6 @@ class PasswordResetsController < ApplicationController
     end
 
     def format_to?
-      return redirect_to new_password_reset_path, notice: "Sorry!not email format" unless params[:email] =~ VALID_EMAIL_REGEX 
+      return redirect_to new_password_reset_path, notice: "Sorry!not email format" unless params[:email] =~ VALID_EMAIL_REGEX
     end
 end

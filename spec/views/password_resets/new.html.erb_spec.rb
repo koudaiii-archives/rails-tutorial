@@ -11,12 +11,21 @@ RSpec.describe "password_resets/new.html.erb", type: :view do
       before { click_button "Reset Password" }
       it { should have_content("Please set your Email") }
     end
-    describe "format email" do
+
+    describe "not email" do
       before do
         fill_in "Email", with: "test"
         click_button "Reset Password"
       end
       it { should have_content("Sorry!not email format") }
+    end
+
+    describe "format email" do
+      before do
+        fill_in "Email", with: "test@test.com"
+        click_button "Reset Password"
+      end
+      it { should have_content("Email sent with password reset instructions.") }
     end
 
   end
