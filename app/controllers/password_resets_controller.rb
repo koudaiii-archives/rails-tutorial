@@ -12,6 +12,10 @@ class PasswordResetsController < ApplicationController
     redirect_to root_path, notice: "Email sent with password reset instructions."
   end
 
+  def edit
+    @user = User.find_by(password_reset_token: params[:id])
+  end
+
   private
     def set_params
       return redirect_to new_password_reset_path, notice: "Please set your Email" if params[:email].blank?
