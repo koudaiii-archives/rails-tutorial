@@ -1,1 +1,3 @@
-<%= @user.inspect %>
+<% form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+<% end %>
