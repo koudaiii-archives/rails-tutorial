@@ -1,7 +1,17 @@
 module MicropostsHelper
 include ActionView::Helpers::OutputSafetyHelper
+  REPLY_TO_REGEX = /@(\w[a-zA-Z0-9]*)\s/i
+
   def wrap(content)
     ActionController::Base.helpers.sanitize(raw(content.split.map{ |s| wrap_long_string(s)}.join(' ')))
+  end
+
+  def highlight_reply_user(content, user)
+    if user
+      highlight(content, REPLY_TO_REGEX, :highlighter => "<a href=users/#{user.id}>@#{user.account_name}</a>")
+    else
+      content
+    end
   end
 
   private
