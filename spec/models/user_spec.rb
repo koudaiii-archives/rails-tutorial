@@ -26,6 +26,9 @@ describe User do
   it { should respond_to(:follow!) }
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:receive_notifications_by_email) }
+  it { should respond_to(:password_reset_token) }
+  it { should respond_to(:password_reset_sent_at) }
+
   it { should respond_to(:followers) }
   it { should be_valid }
   it { should_not be_admin }

@@ -14,4 +14,13 @@ class UserMailer < ApplicationMailer
            format.text { render text: 'followed' }
          end
   end
+
+  def password_reset(user)
+    @user = user
+    mail(to: @user.email, subject: 'Password Reset') do |format|
+     format.html { render 'password_reset' }
+     format.text { render 'password_reset' }
+    end
+  end
+
 end
