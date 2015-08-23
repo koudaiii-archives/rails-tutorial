@@ -23,7 +23,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # add State in User
-gem "state_machine"
+# gem "state_machine"
 
 gem 'bootstrap-sass', '2.3.2.0'
 
