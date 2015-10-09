@@ -24,7 +24,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # add State in User
 # gem "state_machine"
-
+gem 'annotate'
 gem 'bootstrap-sass', '2.3.2.0'
 
 # Use ActiveModel has_secure_password
