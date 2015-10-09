@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                             :integer          not null, primary key
+#  name                           :string
+#  email                          :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  password_digest                :string
+#  remember_token                 :string
+#  admin                          :boolean          default(FALSE)
+#  account_name                   :string
+#  receive_notifications_by_email :boolean
+#  password_reset_token           :string
+#  password_reset_sent_at         :datetime
+#
+
 require 'rails_helper'
 
 describe User do

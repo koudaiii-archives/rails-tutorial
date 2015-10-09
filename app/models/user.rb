@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                             :integer          not null, primary key
+#  name                           :string
+#  email                          :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  password_digest                :string
+#  remember_token                 :string
+#  admin                          :boolean          default(FALSE)
+#  account_name                   :string
+#  receive_notifications_by_email :boolean
+#  password_reset_token           :string
+#  password_reset_sent_at         :datetime
+#
+
 class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   VALID_ACCOUNTNAME_REGEX = /\A[a-z](\w*[a-z0-9])*\z/i
@@ -19,13 +37,15 @@ class User < ActiveRecord::Base
 
   has_many :microposts, dependent: :destroy
   has_many :reply_to, through: :microposts, source: :in_reply_to
-  has_many :followed_users, through: :relationships, source: :followed
 
+  has_many :followed_users, through: :relationships, source: :followed
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+
   has_many :reverse_relationships, foreign_key: "followed_id",
                                   class_name: "Relationship",
                                   dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+
   has_secure_password
 
   def User.new_remember_token

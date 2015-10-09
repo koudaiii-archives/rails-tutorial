@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: microposts
+#
+#  id             :integer          not null, primary key
+#  content        :string
+#  user_id        :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  in_reply_to_id :integer
+#
+
 class Micropost < ActiveRecord::Base
   belongs_to :user
   belongs_to :in_reply_to, class_name: "User"

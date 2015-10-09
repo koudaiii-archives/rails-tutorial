@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: microposts
+#
+#  id             :integer          not null, primary key
+#  content        :string
+#  user_id        :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  in_reply_to_id :integer
+#
+
 require 'rails_helper'
 RSpec.describe Micropost, type: :model do
 
